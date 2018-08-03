@@ -1,0 +1,46 @@
+{
+    "code": "1",
+    "msg": "",
+    "list": [
+        
+        {
+        	"menu_name":"首页", 
+        	"menu_url": "#"
+        },
+        {
+        	"menu_name": "快捷入口", 
+        	"menu_url": "#"
+        },
+        {"menu_name": "快捷入口", "menu_url": "#"},            
+        {"menu_name": "快捷入口", "menu_url": "#"},
+        {"menu_name": "快捷入口", "menu_url": "#"},
+        {"menu_name": "快捷入口", "menu_url": "#"},
+        {"menu_name": "快捷入口", "menu_url": "#"},
+        {
+            "menu_name": "产品订购", "menu_url": "esop/admin/products", 
+            "children":
+                [{
+                    "menu_name": "产品订购主页",
+                    "menu_url": "esop/admin/products/views/product",
+                    "icon": "product_01",
+                    "children":
+                        [
+                            {
+                                "menu_name": "产品订购主页",
+                                "menu_url": "esop/admin/products/views/product",
+                                "icon": "product_01"
+                            },
+                            {"menu_name": "财务发票", "menu_url": "financial"},
+                            {"menu_name": "财务发票", "menu_url": "management"}
+                        ]
+                },
+                    {"menu_name": "财务发票", "menu_url": "financial"},
+                    {"menu_name": "财务发票", "menu_url": "financial"},
+                    {"menu_name": "财务发票", "menu_url": "financial"},
+                    {"menu_name": "财务发票", "menu_url": "financial"},
+                    {"menu_name": "财务发票", "menu_url": "financial"},
+                    {"menu_name": "财务发票", "menu_url": "financial"}
+                ]
+        }
+    ]
+}

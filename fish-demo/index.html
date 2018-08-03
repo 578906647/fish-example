@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+	
+    <link rel="stylesheet" href="fish-desktop/css/fish-desktop-default.min.css">
+	
+	<script type="text/javascript" src="fish-desktop/js/fish-desktop-all.min.js"></script>
+	
+	<!--<script type="text/javascript" src="index.js"></script>-->
+	
+		
+ 
+    <title>Fish测试</title>
+    
+    <!--
+    	js无法加载：
+    	导入的问题？
+    	 
+    -->
+    <script type="text/javascript" > 
+		
+    	$(document).ready(function(){
+    		 $("#datetimepicker").datetimepicker({
+        buttonIcon: ''
+    });
+
+    $('#chooseDate').datetimepicker({
+        buttonIcon: '',
+        changeDate: function (e, value) {
+            var $this = $(this);
+            $this.text($this.val());
+        }
+    });
+
+    $('#datepicker-inline').datetimepicker({
+        inline: true
+    });
+    $('#datetime').datetimepicker({
+        endDate: fish.dateutil.addDays(new Date(), 10)
+    });
+    $('#date').datetimepicker({
+        viewType: "date",
+        todayBtn: true
+    });
+    $('#monthtime').datetimepicker({
+        viewType: "month"
+    });
+    $('#yeartime').datetimepicker({
+        viewType: "year"
+    });
+    $('#time').datetimepicker({
+        viewType: "time"
+    });
+    $('#timeStep').datetimepicker({
+        viewType: "time",
+        minuteStep:5,
+        secondStep:30
+    });
+
+
+			var label1 = new $.ui.label({
+			    appendTo: '#example1',
+			    title: '动态标签111',
+			    close: function() {
+			        alert("label111 close!");
+			    },
+			    click:function(){
+			        alert("label111 click!");
+			    }
+			});
+			var label2 = new $.ui.label({
+			    appendTo: '#example1',
+			    title: '动态标签222',
+			    close: function() {
+			        alert("label222 close!");
+			    }
+			});
+			
+			$(".set-label").click(function() {
+			    label1.setText("我的标签111");
+			});
+			
+			var i = 10;
+			$(".create-label").click(function() {
+			    for (;i<30;i++) {
+			        new $.ui.label({
+			            appendTo: '#example1',
+			            title: '动态标签' + i,
+			            close: (function(index) {
+			                return function() {
+			                    alert("label" + index + "close!");
+			                }
+			            })(i)
+			        });
+			    }
+			});
+
+
+    	});	
+    	
+		    	/**
+		 * Created by wxh on 2016-2-4.
+		 */
+		
+		$(function(){
+		    var options = {
+		        placeholder: "请选择发生地区",
+		        data: {
+		            simpleData: {
+		                enable: true
+		            }
+		        },
+		        callback: {
+		            onClick: onClick
+		        },
+		        fNodes : [
+		            {id:1, pId:0, name:"北京"},
+		            {id:2, pId:0, name:"天津"},
+		            {id:3, pId:0, name:"上海"},
+		            {id:7, pId:0, name:"重庆"},
+		            {id:4, pId:0, name:"河北省", open:true},
+		            {id:41, pId:4, name:"石家庄"},
+		            {id:42, pId:4, name:"保定"},
+		            {id:43, pId:4, name:"邯郸"},
+		            {id:44, pId:4, name:"承德"},
+		            {id:5, pId:0, name:"广东省", open:true},
+		            {id:51, pId:5, name:"广州"},
+		            {id:52, pId:5, name:"深圳"},
+		            {id:53, pId:5, name:"东莞"},
+		            {id:54, pId:5, name:"佛山"},
+		            {id:6, pId:0, name:"福建省", open:true},
+		            {id:61, pId:6, name:"福州"},
+		            {id:62, pId:6, name:"厦门"},
+		            {id:63, pId:6, name:"泉州"},
+		            {id:64, pId:6, name:"三明"}
+		        ]
+		    };
+		    
+		    $('#citySel').combotree(options);
+		
+		    function onClick(e, treeNode) {
+		        console.log("onClick defined in options. " + treeNode.name);
+		    }
+		    
+		    //data.selectNodes 选中节点的信息
+		    $('#citySel').on('combotree:change', function(e, data) {
+		        var nodes = data.selectNodes,
+		            i, l = nodes.length, res = [];
+		        for(i = 0; i < l; i++) {
+		            res[i] = nodes[i].name;
+		        }
+		        console.log(res.length > 0 ? res.join(",") : "");
+		    });
+		
+		    $('button').click(function (e) {
+		        var $target = $(e.target);
+		
+		        switch ($target.attr('id')) {
+		            case 'btn1':
+		                console.log($('#citySel').combotree('value'));
+		                break;
+		            case 'btn2':
+		                $('#citySel').combotree('value', '上海');
+		                break;
+		            case 'btn3':
+		                $('#citySel').combotree('enable');
+		                break;
+		            case 'btn4':
+		                $('#citySel').combotree('disable');
+		                break;
+		            case 'btn5':
+		                $('#citySel').combotree('destroy');
+		                break;
+		            case 'btn6':
+		                $('#citySel').combotree(options);
+		                break;
+		            case 'btn7':
+		                $('#citySel').combotree('show');
+		                break;
+		            case 'btn8':
+		                $('#citySel').combotree('hide');
+		                break;
+		            case 'btn9':
+		                $('#citySel').combotree('clear');
+		                break;
+		        }
+		    });
+		});
+	</script>
+	
+</head>
+<body>
+
+	<script>
+		document.write("<h1>Fish组件测试</h1>");
+		//alert("javascript弹窗显示");
+	</script>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+				<!--左侧导航-->
+				<br><br><br>
+				<div class="list-group">
+		            <a href="#form2" class="list-group-item active">表单</a>
+		            <a href="#demo_button" class="list-group-item">按钮</a>
+		            <a href="#" class="list-group-item">滑动按钮</a>
+		            <a href="#drop-tree" class="list-group-item">下拉树</a>
+		            <a href="#combobox-html" class="list-group-item">combobox</a>
+		            <a href="#demo_switch-btn" class="list-group-item">滑动窗口</a>
+		       </div>
+			</div>
+			<div class="col-md-9">
+				<div class="page-header">
+					<h2>
+						图标
+					</h2>
+				</div>
+				<div class="col-md-12" id="btnAndIcon">
+					        <button type="button" class="btn btn-icon">
+					            <span class="glyphicon glyphicon-star"></span>
+					        </button>
+					        <button type="button" class="btn btn-icon">
+					            <span class="glyphicon glyphicon-plus"></span>
+					        </button>
+					        <button type="button" class="btn btn-icon">
+					            <span class="glyphicon glyphicon-ok"></span>
+					        </button>
+					        <button type="button" class="btn btn-icon">
+					            <span class="glyphicon glyphicon-file"></span>
+					        </button>
+					        <button type="button" class="btn btn-icon">
+					            <span class="glyphicon glyphicon-bell"></span>
+					        </button>
+					        <button type="button" class="btn btn-icon">
+					            <span class="glyphicon glyphicon-remove"></span>
+					        </button>
+					        <button type="button" class="btn btn-icon">
+					            <span class="glyphicon glyphicon-link"></span>
+					        </button>
+					    </div>
+				<div class="page-header">
+					<h2>下拉树</h2>
+				</div>
+				<form id="drop-tree" class="form-horizontal">
+					<div class="form-group required">
+						<label class="col-md-4 control-label">地址：</label>
+						<div class="input-group col-md-8">
+							<input type="text" class="form-control" id="citySel">
+						</div>
+					</div>
+				</form>
+				<div class="page-header">
+					<h2>标签</h2>
+				</div>
+			    <div id="label_html">
+				    <div class="row">
+				        <div class="col-md-12">
+				            <div class="ui-label-container">
+				                <ul id="example1" class="ui-dynamic-labels">
+				                </ul>
+				            </div>
+				        </div>
+				    </div>
+				    <div class="row">
+				        <div class="col-md-2" style="padding-top:10px;">
+				            <button class="btn btn-primary set-label">设置Label</button>
+				        </div>
+				        <div class="col-md-2" style="padding-top:10px;">
+				            <button class="btn btn-primary create-label">创建大量Label实例</button>
+				        </div>
+				    </div>
+				</div>
+				<div class="page-header">
+					<h2>上传文件</h2>
+				</div>		
+				<div id="demoDiv">
+		            <!--  span fileinput-button样式 使用type=file input看起来像个button -->
+		            <span id="uploader" class="btn btn-primary fileinput-button">
+		        <i class="glyphicon glyphicon-plus"></i>
+		        <span>Select files...</span>
+		            <input id="fileupload" type="file" multiple="" accept="image/*">
+		            </span>
+		            <br>
+		            <!--进度条 -->
+		            <div id="progress" class="progress">
+		                <div class="progress-bar progress-bar-success"></div>
+		            </div>
+		            <!-- 显示上传结果 -->
+		            <div id="files" class="files"></div>
+		            <br>
+		            <!-- 上传控件在表单中使用 -->
+		            <form class="form-horizontal js-form">
+		                <div class="form-group required">
+		                    <label class="col-md-2 control-label">附件：</label>
+		
+		                    <div class="input-group col-md-10">
+		                        <input id="js-input-file" class="form-control" readonly="readonly" name="FILE_PATH">
+		                        <span class="input-group-addon fileinput-button">
+		                            附件
+		                            <input class="js-fileupload" type="file">
+		                        </span>
+		                    </div>
+		                </div>
+		            </form>
+		        </div>
+				<div class="page-header">
+					<h2>标签</h2>
+				</div>
+				
+				<div id="demo_tab">
+	                <div id="tabs" class="ui-tabs">
+	                    <ul class="ui-tabs-nav">
+	                        <li id="li-a" class="active">
+	                            <a>First</a>
+	                        </li>
+	                        <li id="li-b">
+	                            <a>Second</a>
+	                        </li>
+	                        <li id="li-c">
+	                            <a>Third</a>
+	                        </li>
+	                    </ul>
+	                    <div id="tabs-a" class="ui-tabs-panel">
+	                        <input type="text" name="" value="">
+	                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	                    </div>
+	                    <div id="tabs-b" class="ui-tabs-panel">
+	                        Phasellus mattis tincidunt nibh. Cras orci urna, blandit id, pretium vel, aliquet ornare, felis. Maecenas scelerisque sem non nisl. Fusce sed lorem in enim dictum bibendum.
+	                    </div>
+	                    <div id="tabs-c" class="ui-tabs-panel">  
+	                        Nam dui erat, auctor a, dignissim quis, sollicitudin eu, felis. Pellentesque nisi urna, interdum eget, sagittis et, consequat vestibulum, lacus. Mauris porttitor ullamcorper augue.
+	                    </div>
+	                </div>
+	                <div style="padding-top:5px;">
+	                
+	                <!--
+	                	js中的tabs("", "","")函数，封装很多功能，根据不同的参数，具有不同的效果
+	                	但这个函数在哪？？？
+	                -->
+                    <button class="btn btn-default" type="button" id="selTab">选中页签</button>
+                    <button class="btn btn-default" type="button" id="disableTab">禁用页签</button>
+                    <button class="btn btn-default" type="button" id="enableTab">启用页签</button>
+                    <button class="btn btn-default" type="button" id="getSelectTab">获取选中页签:0</button>
+                    <button class="btn btn-default" type="button" id="collapsible">可点击收缩</button>
+                    <button class="btn btn-default" type="button" id="mouseOverEvent">鼠标浮动切换页签</button>
+                    <button class="btn btn-default" type="button" id="mouseClickEvent">鼠标点击切换页签</button>
+                    <button class="btn btn-default" type="button" id="hideTab">隐藏指定的标签页</button>
+                    <button class="btn btn-default" type="button" id="showTab">显示指定的标签页</button>
+                    <button class="btn btn-default" type="button" id="getAllTabs">获取所有tab页</button>
+                </div>
+            	</div>
+				<div class="page-header">
+					<h2>Datetimepicker</h2>
+				</div>
+				<div id="datetimepicker_html">
+			    <form action="" class="form-horizontal" role="form">
+			        <fieldset>
+			            <legend>日期展示方式</legend>
+			
+			            <div class="form-group" id="datepicker-inline">
+			                <label class="control-label">Datepicker inline</label>
+			            </div>
+			
+			            <div class="form-group">
+			                <button id="chooseDate" type="button" class="btn btn-primary">Choose Date</button>
+			            </div>
+			
+			            <div class="form-group">
+			                <label for="datetimepicker" class="col-md-2 control-label">DateTime input</label>
+			
+			                <div class="input-group col-md-5">
+			                    <input type="text" class="form-control" id="datetimepicker" data-today-btn="true">
+			                </div>
+			            </div>
+			
+			            <div class="form-group">
+			                <label for="datetime" class="col-md-2 control-label">DateTime Picking</label>
+			
+			                <div class="input-group col-md-5">
+			                    <input class="form-control" id="datetime" type="text">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="date" class="col-md-2 control-label">Date Picking</label>
+			
+			                <div class="input-group col-md-5">
+			                    <input class="form-control" id="date" type="text">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="monthtime" class="col-md-2 control-label">Month Picking</label>
+			
+			                <div class="input-group col-md-5">
+			                    <input class="form-control" id="monthtime" type="text">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="yeartime" class="col-md-2 control-label">Year Picking</label>
+			
+			                <div class="input-group col-md-5">
+			                    <input class="form-control" id="yeartime" type="text">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="time" class="col-md-2 control-label">Default Time Picking</label>
+			
+			                <div class="input-group col-md-5">
+			                    <input class="form-control" id="time" type="text" readonly="">
+			                </div>
+			            </div>
+			            <div class="form-group">
+			                <label for="time" class="col-md-2 control-label">Time Picking</label>
+			
+			                <div class="input-group col-md-5">
+			                    <input class="form-control" id="timeStep" type="text" readonly="">
+			                </div>
+			            </div>
+			        </fieldset>
+			    </form>
+			</div>
+				<div class="page-header">
+						<h2>spinner</h2>
+				</div>
+			    <div id="demo_spinner">
+				    <div class="form-group">
+				        <label for="spinner">Select a value:</label>
+				        <input id="spinner" class="form-control">
+				    </div>
+				    <button type="button" class="btn btn-default js-enable">Enable</button>
+				    <button type="button" class="btn btn-default js-disable">Disable</button>
+				</div>
+				<div class="page-header">
+						<h2>DatetimePicker基本功能</h2>
+				</div>
+				<div id="datetimepicker_html">
+	    			<form action="" class="form-horizontal" role="form">
+				        <fieldset>
+				            <legend>DatetimePicker</legend>
+				            <div class="form-group">
+				                <label for="datetimepicker" class="col-md-2 control-label">DateTime input</label>
+				                <div class="input-group col-md-5">
+				                    <input type="text" class="form-control" id="datetimepicker" data-today-btn="true">
+				                </div>
+				            </div>
+				        </fieldset>
+				        <div style="padding-top:5px;">
+				            <button class="btn btn-default" type="button" id="setValue">设置时间</button>
+				            <button class="btn btn-default" type="button" id="setValueString">设置时间字符串</button>
+				            <button class="btn btn-default" type="button" id="clearValue">清空时间</button>
+				            <button class="btn btn-default" type="button" id="getValue">获取时间</button>
+				            <button class="btn btn-default" type="button" id="getValueString">获取时间字符串</button>
+				            <button class="btn btn-default" type="button" id="disable">失效</button>
+				            <button class="btn btn-default" type="button" id="enable">生效</button>
+				        </div>
+	    			</form>
+				</div>
+				
+				
+				<div class="page-header">
+					<h2>滑动按钮</h2>
+				</div>
+				<div id="demo_switch-btn">
+					<!--
+						滑动窗口无法显示
+						？
+					-->
+					
+			        <div>
+			            <input type="checkbox" class="switch-btn" data-size="lg" id="switch">
+			        </div>
+			        <div style="padding-top:5px;">
+			            <button id="btn1" type="button" class="btn btn-default ">启用</button>
+			            <button id="btn2" type="button" class="btn btn-default ">禁用</button>
+			            <button id="btn3" type="button" class="btn btn-default ">取值:false</button>
+			            <button id="btn4" type="button" class="btn btn-default ">ON</button>
+			            <button id="btn5" type="button" class="btn btn-default ">OFF</button>
+			            <button id="btn6" type="button" class="btn btn-default ">切换状态</button>
+			            <button id="btn7" type="button" class="btn btn-default btn-error ">销毁</button>
+			            <button id="btn8" type="button" class="btn btn-default ">创建</button>
+			        </div>
+			    </div>
+			    <div id="demo_21">
+			     	<!--
+						滑动窗口无法显示
+					-->
+					
+			        <input type="checkbox" checked="" class="switch-btn" data-on-color="primary" data-off-color="info">
+			        <input type="checkbox" checked="" class="switch-btn" data-on-color="info" data-off-color="success">
+			        <input type="checkbox" checked="" class="switch-btn" data-on-color="success" data-off-color="warning">
+			        <input type="checkbox" checked="" class="switch-btn" data-on-color="warning" data-off-color="danger">
+			        <input type="checkbox" checked="" class="switch-btn" data-on-color="danger" data-off-color="primary">
+			    </div>
+			
+				<div class="page-header">
+				    <h2>按钮样式</h2>
+				</div>
+				<!--
+					缺少js脚本
+				-->
+				<div id="demo_button" data-ui-role="tabs" class="ui-tabs">
+				    <ul class="ui-tabs-nav" role="tablist">
+				        <li class="ui-state-default ui-tabs-active" role="tab" tabindex="0" aria-controls="tabs-f-preview" aria-labelledby="ui-id-65" aria-selected="true" aria-expanded="true"><a href="#button-1" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-65">Preview</a></li>
+				        <li class="ui-state-default" role="tab" tabindex="1" aria-controls="tabs-f-preview" aria-labelledby="ui-id-65" aria-selected="true" aria-expanded="true"><a href="#button-2" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-65">Button</a></li>
+				        
+				        <li class="ui-state-default" role="tab" tabindex="-1" aria-controls="tabs-f-html" aria-labelledby="ui-id-66" aria-selected="false" aria-expanded="false"><a href="#button-3" class="ui-tabs-anchor" role="presentation" tabindex="-1" id="ui-id-66">HTML</a></li>
+				    </ul>
+				    
+				    <div id="button-1" aria-labelledby="ui-id-65" class="ui-tabs-panel" role="tabpanel" aria-expanded="false" aria-hidden="false" style="display: block;">
+						<div class="row">
+						    <div class="col-md-12" id="btnClass">
+						        <button type="button" class="btn btn-default">Default</button>
+						        <button type="button" class="btn btn-primary">Primary</button>
+						        <button type="button" class="btn btn-success">Success</button>
+						        <button type="button" class="btn btn-info">Info</button>
+						        <button type="button" class="btn btn-warning">Warning</button>
+						        <button type="button" class="btn btn-danger">Danger</button>
+						        <button type="button" class="btn btn-link">Link</button>
+						    </div>
+						</div>
+				    </div>
+				    <div id="button-2" aria-labelledby="ui-id-65" class="ui-tabs-panel" role="tabpanel" aria-expanded="false" aria-hidden="false" style="display: block;">
+						<div class="row">
+						    <div class="col-md-12" id="btnOutline">
+						        <button type="button" class="btn btn-outline-danger">outline danger</button>
+						        <button type="button" class="btn btn-outline-warning">outline warning</button>
+						        <button type="button" class="btn btn-outline-info">outline info</button>
+						        <button type="button" class="btn btn-outline-success">outline success</button>
+						        <button type="button" class="btn btn-outline-primary">outline primary</button>
+						    </div>
+						</div>
+				    </div>
+				    <div id="button-3" aria-labelledby="ui-id-65" class="ui-tabs-panel" role="tabpanel" aria-expanded="false" aria-hidden="false" style="display: block;">
+						<div class="row">
+						   
+			    			<div class="col-md-12" id="btnClass">
+						        <button type="button" class="btn btn-default">Default</button>
+						        <button type="button" class="btn btn-primary">Primary</button>
+						        <button type="button" class="btn btn-success">Success</button>
+						        <button type="button" class="btn btn-info">Info</button>
+						        <button type="button" class="btn btn-warning">Warning</button>
+						        <button type="button" class="btn btn-danger">Danger</button>
+						        <button type="button" class="btn btn-link">Link</button>
+			    			</div> 
+						</div>
+				    </div>
+				   <div id="tabs-f-preview" aria-labelledby="ui-id-65" class="ui-tabs-panel" role="tabpanel" aria-expanded="false" aria-hidden="false" style="display: block;">
+						<div class="row">
+						    <div class="col-md-12" id="btns">
+						        <button type="button" class="btn btn-default">
+						            <span class="glyphicon glyphicon-star"></span>
+						            Star
+						        </button>
+						        <button type="button" class="btn btn-primary">
+						            <span class="glyphicon glyphicon-plus"></span>
+						            Primary
+						        </button>
+						        <button type="button" class="btn btn-success">
+						            <span class="glyphicon glyphicon-ok"></span>
+						            Success
+						        </button>
+						        <button type="button" class="btn btn-info">
+						            <span class="glyphicon glyphicon-file"></span>
+						            Info
+						        </button>
+						        <button type="button" class="btn btn-warning">
+						            <span class="glyphicon glyphicon-bell"></span>
+						            Warning
+						        </button>
+						        <button type="button" class="btn btn-danger">
+						            <span class="glyphicon glyphicon-remove"></span>
+						            Danger
+						        </button>
+						        <button type="button" class="btn btn-link">
+						            <span class="glyphicon glyphicon-link"></span>
+						            Link
+						        </button>
+						    </div>
+						</div>
+				    </div>
+				    
+				</div>
+				
+				<div class="page-header">
+					<h2>combobox基本功能</h2>
+				</div>
+				<div id="combobox-html" class="row">
+				    <h2>垂直排列表单</h2>
+				
+				    <form role="form" id="form1">
+				        <div class="form-group">
+				            <label class="control-label">Into this</label>
+				            <input type="text" name="combobox1" id="combobox1" class="form-control">
+				        </div>
+				    </form>
+				
+				    <h2>水平排列表单</h2>
+				
+				    <form class="form-horizontal">
+				        <div class="form-group">
+				            <label class="control-label col-md-2">Into this</label>
+				
+				            <div class="col-md-3">
+				                <select name="combobox2" id="combobox2" class="form-control">
+				                    <option value="" selected="selected">Select a State</option>
+				                    <option value="AL">Alabama</option>
+				                    <option value="AK">Alaska</option>
+				                    <option value="AZ">Arizona</option>
+				                    <option value="AR">Arkansas</option>
+				                    <option value="CA">California</option>
+				                    <option value="CO">Colorado</option>
+				                    <option value="CT">Connecticut</option>
+				                    <option value="DE">Delaware</option>
+				                    <option value="DC">District Of ColumbiaDistrict Of ColumbiaDistrict Of Columbia</option>
+				                    <option value="1">1</option>
+				                    <option value="2">2</option>
+				                    <option value="3">3</option>
+				                    <option value="4">4</option>
+				                    <option value="5">5</option>
+				                    <option value="6">6</option>
+				                    <option value="7">7</option>
+				                    <option value="8">8</option>
+				                    <option value="9">9</option>
+				                    <option value="10">10</option>
+				                </select>
+				            </div>
+				        </div>
+				    </form>
+				
+				    <h2>内联表单</h2>
+				
+				    <form class="form-inline">
+				        <div class="form-group">
+				            <select name="combobox3" id="combobox3" class="form-control">
+				                <option value="" selected="selected">Select a State</option>
+				                <option value="AL">Alabama</option>
+				                <option value="AK">Alaska</option>
+				                <option value="AZ">Arizona</option>
+				                <option value="AR">Arkansas</option>
+				                <option value="CA">California</option>
+				                <option value="CO">Colorado</option>
+				                <option value="CT">Connecticut</option>
+				                <option value="DE">Delaware</option>
+				                <option value="DC">District Of ColumbiaDistrict Of ColumbiaDistrict Of Columbia</option>
+				            </select>
+				        </div>
+				    </form>
+				
+				    <h2>
+				        方法
+				    </h2>
+				
+				    <p>
+				    	<!--缺少js脚本-->
+				        <button type="button" id="btn1" class="btn btn-default">启用</button>
+				        <button type="button" id="btn2" class="btn btn-default">禁用</button>
+				        <button type="button" id="btn3" class="btn btn-default">销毁</button>
+				        <button type="button" id="btn4" class="btn btn-default">创建</button>
+				        <button type="button" id="btn5" class="btn btn-default">获取焦点</button>
+				        <button type="button" id="btn21" class="btn btn-default">取值</button>
+				        <button type="button" id="btn20" class="btn btn-default">取选中对象</button>
+				        <button type="button" id="btn22" class="btn btn-default">赋值</button>
+				    </p>
+				    <p class="btn-group">
+				        <button type="button" id="btn25" class="btn btn-default">可输入自定义值</button>
+				        <button type="button" id="btn26" class="btn btn-default">不可输入自定义值</button>
+				    </p>
+				    <p class="btn-group">
+				        <button type="button" id="btn28" class="btn btn-default">下拉框根据内容设置宽度</button>
+				        <button type="button" id="btn29" class="btn btn-default">下拉框根据输入框设置宽度</button>
+				    </p>
+				    <p class="btn-group">
+				        <button type="button" id="btn30" class="btn btn-default">追加内容到下拉框中</button>
+				    </p>
+				</div>
+				
+				<div class="page-header">
+					<h2>表单demo</h2>
+				</div>
+				<br>
+				<div class="col-md-12">
+					<!-- 1. form2样式 2. action data.json 3. autocomplete -->
+					<form id="form2" action="data.json" autocomplete="off">
+						<!--元素分组-->
+			            <fieldset>
+			                <legend>最简单的Form</legend>
+			                <!--
+			                	1. form-group:  margin-bottom: 15px;
+			                	2. has-prompt：	position: relative;
+			       		    -->
+			                <div class="form-group has-prompt">
+			                	<!--图标：用户
+			                		aria-hidden:true
+			                	-->
+			                    <span class="glyphicon glyphicon-user form-control-prompt" aria-hidden="true"></span>		                    
+			                    	
+			                    <!--value和placeholder的区别
+			                    	data-rule: 使用 data-* 属性来嵌入自定义数据？？？
+			                    -->
+	                            <input class="form-control" name="username" value="smith" data-rule="required;username" placeholder="用户名" type="text">
+			                </div>
+			
+							<!-- has-feedback: -->
+			                <div class="form-group has-feedback">
+			                	
+			                    <input class="form-control" name="password" data-rule="required;password" placeholder="密码" type="password">
+			                    <!--图标：X -->
+			                    <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+			                </div>
+			                <div class="form-group">
+			                	<!--
+			                		type 属性:规定类型
+			                		-->
+			                    <button class="btn btn-success " type="submit">提交</button>
+			                    &nbsp;&nbsp;
+			                    <button class="btn btn-danger " type="reset">重置</button>
+			                </div>
+			            </fieldset>
+			        </form>
+	    		</div>
+	    		
+			
+	    		<div class="col-md-12">
+	    			<form class="form-horizontal" id="detailform" action="data.json">
+	                    <div class="row">
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">user Name</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input id="userName" name="userName" class="form-control" data-rule="required;username" value="tanyl">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">autocomplete</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input id="autocomplete" name="autocomplete" class="form-control" data-rule="required;" value="ActionScript">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">password</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input id="password" name="password" class="form-control" data-rule="required;password" type="text" value="123456">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">repassword</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input id="repassword" name="repassword" class="form-control" data-rule="required;match[password]" type="password" value="123456">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">Effective</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <div class="input-group">
+	                                        <input class="form-control" id="effectiveDate" name="effectiveDate" type="text" data-rule="required;match[lt, expireDate, date]" value="2014/11/17 11:12:22">
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">Expire</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <div class="input-group date">
+	                                        <input class="form-control" id="expireDate" name="expireDate" type="text" data-rule="required;" value="2014/11/18 13:14:34">
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">select</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <select class="combobox form-control" name="stateSelect" id="stateSelect" data-rule="required">
+	                                        <!-- <option value="">Please select...</option> -->
+	                                        <option value="Alabama">Alabama</option>
+	                                        <option value="Alaska">Alaska</option>
+	                                        <option value="Arizona">Arizona</option>
+	                                        <option value="Arkansas">Arkansas</option>
+	                                        <option value="California">California</option>
+	                                        <option value="Colorado">Colorado</option>
+	                                    </select>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">popedit</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <div class="input-group">
+	                                        <input id="popedit" name="popedit" value="initPopedit" class="form-control" data-rule="required;">
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">input</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input class="combobox form-control" name="stateInput" id="stateInput" data-rule="required">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">multiselect</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <select id="multiselect" name="multiselect" class="ui-multiselect form-control" data-placeholder="Choose a Country..." data-rule="required" multiple="">
+	                                        <option value=""></option>
+	                                        <option value="Austria" selected="selected">Austria</option>
+	                                        <option value="Azerbaijan" selected="selected">Azerbaijan</option>
+	                                        <option value="Bahamas">Bahamas</option>
+	                                    </select>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group required">
+	                                <label class="col-md-4 col-sm-4 control-label">spinner</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input id="spinner" value="13" name="spinner" class="form-control" data-rule="required">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-4 col-sm-4 control-label">Underline</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input name="underline" class="underline" value="read only">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-4 col-sm-4 control-label">link</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <a href="#" id="link" name="link" class="underline-link">link</a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-4 col-sm-4 control-label">Checkbox</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <label class="checkbox-inline">
+	                                        <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox1" value="option1" data-rule="checked" checked="true">1</label>
+	                                    <label class="checkbox-inline">
+	                                        <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox2" value="option2">2</label>
+	                                    <label class="checkbox-inline">
+	                                        <input type="checkbox" name="inlineCheckbox" id="inlineCheckbox3" value="option3">3</label>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-4 col-sm-4 control-label">Radio</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <label class="radio-inline">
+	                                        <input type="radio" name="inlineRadio" id="inlineRadio1" value="option1" data-rule="checked" checked="true">1</label>
+	                                    <label class="radio-inline">
+	                                        <input type="radio" name="inlineRadio" id="inlineRadio2" value="option2">2</label>
+	                                    <label class="radio-inline">
+	                                        <input type="radio" name="inlineRadio" id="inlineRadio3" value="option3">3</label>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-4 col-sm-4 control-label">switchButton</label>
+	                                <div class="col-md-8 col-sm-8">
+	                                    <input name="switchBtn" id="switchBtn" value="switch" type="checkbox" class="switchbutton">
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-12 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-2 col-sm-4 control-label">textarea</label>
+	                                <div class="col-md-10 col-sm-8 clear-white">
+	                                    <textarea id="remarks" name="remarks" class="form-control" data-rule="required;length[10~, true]">test项目组</textarea>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-12 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-2 col-sm-4 control-label">upload</label>
+	                                <div class="col-md-10 col-sm-8">
+	                                    <div class="input-group">
+	                                        <input name="FILE_PATH" value="" class="form-control" readonly="readonly">
+	                                        <span class="input-group-addon fileinput-container">
+	                                        <div class="fileinput-pick">
+	                                            <i class="glyphicon glyphicon-level-up"></i>
+	                                        </div>
+	                                        <input type="file" id="fileupload" class="fileinput-input" multiple="">
+	                                    </span>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-12 col-sm-12">
+	                            <div class="form-group">
+	                                <label class="col-md-2 col-sm-4 control-label">居住地址</label>
+	                                <div class="col-md-10 col-sm-8">
+	                                    <div class="address col-md-12">
+	                                        <div class="form-group">
+	                                            <select name="provice" class="form-control provice"></select>
+	                                        </div>
+	                                        <div class="form-group">
+	                                            <select name="city" class="form-control city"></select>
+	                                        </div>
+	                                        <div class="form-group">
+	                                            <select name="region" class="form-control region"></select>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-12 col-sm-12 text-right">
+	                            <button type="button" id="btn1" class="btn btn-primary">Ajax方式提交</button>
+	                            <button type="submit" class="btn btn-success">普通Form提交</button>
+	                            <button type="reset" class="btn btn-danger">重置</button>
+	                        </div>
+	                    </div>
+	                </form>
+	    		</div>
+	    		
+	    		<div class="col-md-12">
+		    			 <form id="detailform">
+						    <div class="form-group">
+						        <label>First Name</label>
+						        <input type="text" class="form-control" name="person.name.first" value="John">
+						    </div>
+						    <div class="form-group">
+						        <label>Last Name</label>
+						        <input type="text" class="form-control" name="person.name.last" value="Doe">
+						    </div>
+						
+						    <div class="from-group">
+						        <label>Favorite Food</label>
+						        <div class="checkbox">
+						            <label><input type="checkbox" name="person.favFood[]" value="steak" checked="checked"> Steak</label>
+						            <label><input type="checkbox" name="person.favFood[]" value="pizza"> Pizza</label>
+						            <label><input type="checkbox" name="person.favFood[]" value="chicken" checked="checked"> Chicken</label>
+						        </div>
+						    </div>
+						
+						    <dl>
+						        <dt>Give us your five friends' names and emails</dt>
+						        <div class="row">
+						            <div class="col-md-6">
+						                <div class="form-group">
+						                    <label>Email</label>
+						                    <input type="text" class="form-control" name="person.friends[0].email" value="agent.smith@example.com">
+						                </div>
+						            </div>
+						            <div class="col-md-6">
+						                <div class="form-group">
+						                    <label>Name</label>
+						                    <input type="text" class="form-control" name="person.friends[0].name" value="Smith Agent">
+						                </div>
+						            </div>
+						        </div>
+						        <div class="row">
+						            <div class="col-md-6">
+						                <div class="form-group">
+						                    <label>Email</label>
+						                    <input type="text" class="form-control" name="person.friends[1].email" value="n3o@example.com">
+						                </div>
+						            </div>
+						            <div class="col-md-6">
+						                <div class="form-group">
+						                    <label>Name</label>
+						                    <input type="text" class="form-control" name="person.friends[1].name" value="Thomas A. Anderson">
+						                </div>
+						            </div>
+						        </div>
+						    </dl>
+						</form>
+		    		</div>
+		    	
+			</div>
+			</div>
+		</div>
+	
+    	
+    	</div>
+   	
+
+
+</body>
+
+</html>

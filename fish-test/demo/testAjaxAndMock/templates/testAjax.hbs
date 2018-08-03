@@ -1,0 +1,113 @@
+<div class="panel-title">
+	<h2 id="test-title">测试Ajax与Mock</h2>
+</div>
+<ul class="test-list">
+	
+</ul>
+
+<!--弹窗-->
+<div  id="test-popup" class="ui-dialog dialog-md" >
+    <div class="modal-header">
+    	
+        <h4 class="modal-title"><span class="glyphicon glyphicon-apple"></span>绑定</h4>
+    </div>
+    
+    <div class="modal-body">
+    	<!--panel panel-default-->
+        <div class="">
+            <!--<div class="panel-heading">需求信息</div>-->
+            <!--panel-body-->
+            <div class="">
+                <form class="form-horizontal" id="demand-form">
+                	<div class="row">
+                		<div class="col-md-6">
+	                        <div class="form-group">
+	                            <label class="col-md-3 control-label">客户名称：</label>
+	                            <div class="input-group col-md-9">
+	                                <input class="form-control" name="REQUIREMENT_TITLE" placeholder="中国工商银行北京分行">
+	                            </div>
+	                        </div>
+	                    </div>
+	                    
+                	</div>
+                	<div class="row">
+                		<div class="col-md-6">
+	                        <div class="form-group">
+	                            <label class="col-md-3 control-label">归属集团：</label>
+	                            <div class="input-group col-md-9">
+	                                <input class="form-control" name="REPORTER_PHONE" placeholder="中国工商银行">
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="col-md-6">
+	                        <button class="btn btn-primary">搜索</button>
+	                    </div>
+                	</div>
+                	
+                    
+                    
+                    
+                    
+                    <!--<button type="button" class="btn btn-primary pull-right" id="eventreq-demand-addbtn">添加需求</button>-->
+                </form>
+                <div class="row">
+                    	<table class="table table-hover table-striped">
+						    <!--<caption>基本的表格布局</caption>-->
+						    <thead>
+							    <tr>
+							      <th>集团名称</th>
+							      <th>集团编码</th>
+							    </tr>
+						    </thead>
+						    <tbody>
+							    <tr>
+							      <td>中国工商银行</td>
+							      <td>A0001</td>
+							    </tr>
+							    <tr>
+							      <td>-</td>
+							      <td>-</td>
+							    </tr>
+							    <tr>
+							      <td>-</td>
+							      <td>-</td>
+							    </tr>
+							    <tr>
+							      <td>-</td>
+							      <td>-</td>
+							    </tr>
+						    </tbody>
+						</table>
+						<!--fish分页-->
+						 <div id="pagination-html" class="row">
+				            <div class="col-md-12" id="inner-fish-paginate">
+				                <div id="page-content"></div>
+				                <div id="pagination-demo"></div>
+				                
+				            </div>
+				        </div>
+						<!--bootstrap分页-->
+                        <ul class="pagination">
+						    <li><a href="#">&laquo;</a></li>
+						    <li class="active"><a href="#">1</a></li>
+						    <li class="disabled"><a href="#">2</a></li>
+						    <li><a href="#">3</a></li>
+						    <li><a href="#">4</a></li>
+						    <li><a href="#">5</a></li>
+						    <li><a href="#">&raquo;</a></li>
+						</ul>
+                    </div>
+            </div>
+        </div>
+        
+            
+    </div>
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="save-button">确定</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="cancel-button">取消</button>
+    </div>
+</div>
+
+
+

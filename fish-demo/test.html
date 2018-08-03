@@ -1,0 +1,370 @@
+<head>
+<meta charset="utf-8"> 
+<title>test</title> 
+		<link rel="stylesheet" href="fish-desktop/css/fish-desktop-default.min.css">
+		<script type="text/javascript" src="fish-desktop/js/fish-desktop-all.min.js"></script>
+		<!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">-->
+		<!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+		<!--<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+		
+		<script>
+			 $(document).ready(function () {
+              $('#pagination-demo').pagination({
+                  records: 100,
+                  onPageClick: function (e, eventData) {
+                      $('#page-content').text(eventData.eventType+' '+eventData.rowNum+' '+eventData.page)
+                  }
+              });
+              
+          }); //end dom ready
+
+          function log(obj) {
+            console.log(obj);
+          }
+		</script>
+		
+		<script type="text/javascript">
+			$(document).ready(function () {
+				
+				/*
+				 * bug：无法访问RequireAddDlgView.html
+				 * 模态框的内容不应放在本页面，需要新建一个RequieAddView.html，
+				 * 将模态框的内容copy进去
+				 */
+			
+			    $.ajax('RequireAddDlgView.html').then(function (content) {
+			        var $popup = $(content);
+			        
+			        // 设置弹出框的属性（大小）style="width:530px; height: 857px;"
+			        var options = {
+			        	width: 682,
+			            height: 517,
+			            modal: true,
+			            draggable: true,
+			            content: $popup,
+			            autoResizable: true
+			        };
+			
+					// 非模态
+			        $("#btnOpen1").click(function () {
+			            var popup = fish.popup(options);
+			            popup.result.then(function (message) {
+			                alert(message);
+			            });
+			
+			            $popup.on('click', '#save-button', function () {
+			                popup.close('save button click');
+			            });
+			        });
+			        
+			        // 第一个
+			        $("#btnOpen").click(function () {
+			            fish.popup($.extend({}, options, {
+			            	modal: true,
+                			resizable: true,
+                			draggable: true
+            			}));
+			        });
+					
+					// 模态
+			        $("#btnOpenModal").click(function () {
+			            var popup = fish.popup($.extend({}, options, {
+			                modal: true
+			            }));
+			
+			            popup.result.then(function (message) {
+			                alert(message);
+			            });
+			        });
+					
+					// 可拖曳
+			        $("#btnDrag").click(function () {
+			            fish.popup($.extend({}, options, {
+			                draggable: true
+			            }));
+			        });
+					
+					// 可调整大小
+			        $("#btnResize").click(function () {
+			            fish.popup($.extend({}, options, {
+			                resizable: true
+			            }));
+			        });
+			
+			
+			        $('#btnCanClose').click(function () {
+			            fish.popup($.extend({}, options, {
+			                canClose: false,
+			                content: $(content)
+			            }));
+			        });
+			
+			        //show()/hide() demo
+			        var popup1, popup2, popup3, popup4;
+			
+			        $('#btnShowDemo').click(function () {
+			            if (popup1 && !popup1.isDestroy() && !popup1.isOpen()) {
+			                popup1.show();
+			                return;
+			            }
+			
+			            $.ajax('popup1.html').then(function (resp) {
+			                var $content = $(resp);
+			                popup1 = fish.popup({
+			                    destroyOnClose: false,
+			                    content: $content
+			                });
+			
+			                $content
+			                    .on('click', '.btn-open-modal-win', function () {
+			                        if (popup2 && !popup2.isDestroy() && !popup2.isOpen()) {
+			                            popup2.show();
+			                        } else {
+			                            $.ajax('popup2.html').then(function (resp) {
+			                                var $content = $(resp);
+			                                popup2 = fish.popup({
+			                                    destroyOnClose: false,
+			                                    content: $content,
+			                                    canClose: false
+			                                });
+			                            });
+			                        }
+			                    })
+			                    .on('click', '.btn-open-win', function () {
+			                        if (popup3 && !popup3.isDestroy() && !popup3.isOpen()) {
+			                            popup3.show();
+			                        } else {
+//			                            $.ajax('popup3.html').then(function (resp) {
+//			                                var $content = $(resp);
+//			                                popup3 = fish.popup({
+//			                                    modal: false,
+//			                                    destroyOnClose: false,
+//			                                    content: $content
+//			                                });
+//			
+//			                                $content.on('click', '.btn-open-modal-win', function () {
+//			                                    if (popup4 && !popup4.isDestroy() && !popup4.isOpen()) {
+//			                                        popup4.show();
+//			                                    } else {
+//			                                        $.ajax('popup4.html').then(function (resp) {
+//			                                            var $content = $(resp);
+//			                                            popup4 = fish.popup({
+//			                                                destroyOnClose: false,
+//			                                                content: $content,
+//			                                                canClose
+//			                                            });
+//			
+//			
+//			                                            var opt = {
+//			                                                height: 250,
+//			                                                colModel: [{
+//			                                                    name: 'id',
+//			                                                    sorttype: "int",
+//			                                                    label: 'Inv No',
+//			                                                    key: true
+//			                                                }, {
+//			                                                    name: 'invdate',
+//			                                                    label: 'Date',
+//			                                                    width: 90,
+//			                                                    sorttype: "date",
+//			                                                    formatter: "date",
+//			                                                    headertitle: '时间' //列头的提示
+//			                                                }, {
+//			                                                    name: 'name',
+//			                                                    label: 'Client',
+//			                                                    width: 100,
+//			                                                    title: false //内容没有提示
+//			                                                }, {
+//			                                                    name: 'amount',
+//			                                                    label: 'Amount',
+//			                                                    width: 80,
+//			                                                    align: "right",
+//			                                                    sorttype: "float",
+//			                                                    formatter: "number"
+//			                                                }, {
+//			                                                    name: 'tax',
+//			                                                    label: 'Tax',
+//			                                                    width: 80,
+//			                                                    align: "right",
+//			                                                    sorttype: "float"
+//			                                                }, {
+//			                                                    name: 'total',
+//			                                                    label: 'Total',
+//			                                                    width: 80,
+//			                                                    align: "right",
+//			                                                    sorttype: "float"
+//			                                                }, {
+//			                                                    name: 'note',
+//			                                                    label: 'Notes',
+//			                                                    width: 100,
+//			                                                    sortable: false
+//			                                                }],
+//			                                                caption: "可以缩起来的区域",
+//			                                                showColumnsFeature: true
+//			                                            };
+//			
+//			                                            _.delay(function () {
+//			                                                var $grid = $content.find("#grid").grid(opt);
+//			
+//			                                                $.getJSON('griddata.json').success(function (data) {
+//			                                                    $grid.grid('reloadData', data);
+//			                                                });
+//			                                            });
+//			
+//			                                        });
+//			                                    }
+//			                                });
+//			
+//			                            });
+//			                        
+			                        }
+			                    })
+			                    .on('click', '.btn-hide', function () {
+			                        popup1.hide();
+			                    });
+			
+			            });
+			        });
+			
+			    });
+					
+					
+				
+			
+			});
+		</script>
+
+</head>
+
+<body>
+	<div class="container">	
+		<h2>模态框（Modal）形式</h2>
+		<!-- 按钮触发模态框 -->
+		<!--<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			点击进入bootstrap模态框（类似弹窗）
+		</button>-->
+		<button id="btnOpen" class="btn btn-primary btn-lg"  >
+			点击进入fish Popup
+		</button>
+		
+		
+		<div class="btn-group">
+	        <!--<button class="btn btn-default" type="button" id="btnOpen1">非模态</button>-->
+	        <button class="btn btn-success" type="button" id="btnOpenModal">模态</button>
+	        <button class="btn btn-danger" type="button" id="btnDrag">可拖拽</button>
+	        <button class="btn btn-info" type="button" id="btnResize">可调整大小</button>
+	        <button class="btn btn-warning" type="button" id="btnShowDemo">多层弹出</button>
+	        <button class="btn btn-primary" type="button" id="btnCanClose">不显示x按钮</button>
+	    </div>
+				
+		<br><br>
+		<div class="panel panel-default">
+			
+			<div class="panel-body">
+				
+				<h2 class="modal-title"><span class="glyphicon glyphicon-apple"></span>绑定</h2>
+				<hr>
+				<form class="form-horizontal" id="form" action="" autocomplete="off">
+					<div class="row">
+						<div class="col-md-6">
+						
+							<div style="padding-top:5px;" class="form-group">
+				            <label class="col-md-3">客户名称：</label>
+				            <div class="col-md-7">
+				                <input style="border-radius: 25px;" id="userName" name="userName" class="form-control" data-rule="required;username" value="中国工商银行北京分行">
+				            </div>
+				            </div>
+				            <div style="padding-top:5px;" class="form-group">
+				                <label class="col-md-3">归属集团</label>
+				                <div class="col-md-7">
+				            		<input style="border-radius: 25px;" id="userName" name="userName" class="form-control" data-rule="required;username" value="中国工商银行">
+				                	
+				                </div>
+				                <div class="col-md-2">
+				                	<button style="border-radius: 25px;" class="btn btn-primary">搜索</button>
+				                </div>
+				            </div>
+				            <div>
+				            	<!--<div class="form-group required">
+				                            <label class="col-md-4 col-sm-4 control-label">user Name</label>
+				                            <div class="col-md-8 col-sm-8">
+				                                <input id="userName" name="userName" class="form-control" data-rule="required;username" value="tanyl">
+				                            </div>
+				                        </div>-->
+				            </div>
+				        </div>
+				        
+					</div>
+				</form>
+																																			
+				<!--列表-->
+				<!--
+					js引入表格如何控制排版？
+				-->
+				<div class="row">
+					<div class="col-md-12">
+						<div id="grid02"></div>
+					</div>
+					
+				</div>
+		
+			</div>
+			
+		</div>
+		
+		
+	</div>
+
+<!--表格脚本加载-->
+<script type="text/jscript">
+	$(document).ready(function(){
+		
+		// Set data
+				
+				var testdata = [
+					{username:"中国银行", code:"A0001"},
+					{username:"", code:""},
+					{username:"中国银行", code:"A0001"},
+					{username:"中国银行", code:"A0001"},
+					{username:"", code:""}
+				];
+		
+		
+				$("#grid01").grid({
+				    data: testdata,
+				    height: 190,
+				    colModel:[
+				    		{name:'username'},
+				    		{name:'code'}     
+				    ]
+				    
+				    ,rowNum : 4
+				    ,rowList : [5,10,20]
+				    ,pager: true
+				    ,caption:""
+				});
+				
+				$("#grid02").grid({
+				    data: testdata,
+				    height: 190,
+				    colModel:[
+				    		{name:'username'},
+				    		{name:'code'}
+				        
+				    ]
+				    
+				    ,rowNum : 4
+				    ,rowList : [5,10,20]
+				    ,pager: true
+				    ,caption:""
+				});
+		
+				$("#grid01").grid('sortableRows')
+				$("#grid02").grid('sortableRows')
+		
+	});
+
+</script>
+</body>
+
+</html>

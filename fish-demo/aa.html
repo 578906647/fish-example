@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		
+		<link rel="stylesheet" href="fish-desktop/css/fish-desktop-default.min.css">
+		<script type="text/javascript" src="fish-desktop/js/fish-desktop-all.min.js"></script>
+		<script type="text/javascript">
+			
+			$(document).ready(function () {
+				var label1 = new $.ui.label({
+			    appendTo: '#example1',
+			    title: '动态标签111',
+			    close: function() {
+			        alert("label111 close!");
+			    },
+			    click:function(){
+			        alert("label111 click!");
+			    }
+			});
+			var label2 = new $.ui.label({
+			    appendTo: '#example1',
+			    title: '动态标签222',
+			    close: function() {
+			        alert("label222 close!");
+			    }
+			});
+			
+			$(".set-label").click(function() {
+			    label1.setText("我的标签111");
+			});
+			
+			$(".create-label").click(function() {
+			    for (var i = 10; i < 30; i++) {
+			        new $.ui.label({
+			            appendTo: '#example1',
+			            title: '动态标签' + i,
+			            close: (function(index) {
+			                return function() {
+			                    alert("label" + index + "close!");
+			                }
+			            })(i)
+			        });
+			    }
+			});
+
+				
+			});
+			
+			
+		</script>	
+	</head>
+	<body>
+		
+		<div id="label_html">
+		    <div class="row">
+		        <div class="col-md-12">
+		            <div class="ui-label-container">
+		                <ul id="example1" class="ui-dynamic-labels">
+		                </ul>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="row">
+		        <div class="col-md-2" style="padding-top:10px;">
+		            <button class="btn btn-primary set-label">设置Label</button>
+		        </div>
+		        <div class="col-md-2" style="padding-top:10px;">
+		            <button class="btn btn-primary create-label">创建大量Label实例</button>
+		        </div>
+		    </div>
+		</div>
+		
+	</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="fish-desktop/css/fish-desktop-default.min.css">
+		<script type="text/javascript" src="fish-desktop/js/fish-desktop-all.min.js"></script>
+		
+		
+		<!--利用js实现左侧导航栏自适应于右边内容-->
+		<script type="text/javascript">
+			
+			
+			
+			window.onload = function(){   //设置页面加载完成后运行JS
+			    var hl = $("#left-nav").outerHeight(); //获取左侧left层的高度
+			    var hr = $("#right-content").outerHeight(); //获取右侧right层的高度
+			    var mh = Math.max(hl,hr); //比较hl与hr的高度，并将最大值赋给变量mh
+			    $("#left-nav").height(mh); //将left层高度设为最大高度mh
+			    $("#right-content").height(mh); //将right层高度设为最大高度
+			}
+		</script>
+		<!--<script type="text/javascript">
+			$(document).ready(function() {
+				/*
+				 * bug: splitter不存在
+				 */
+			
+			    $("#horizontal").splitter({
+			        panes: [
+			            { collapsible: true, size: "220px" },
+			            { collapsible: false }
+			        ],
+			        create : function(){//初始化完成事件
+			            console.log("..create..");
+			        },
+			        layoutChange : function(){//布局改变后的事件
+			            console.log("..layoutchange..");
+			        },
+			        collapse : function(collapsedTarget) {//collapse事件
+			            console.log("..collapse..");
+			
+			        },
+			        expand : function(expandedTarget) {//expand前事件
+			            console.log("..expand..");
+			
+			        }
+			    });
+			
+			
+			    $("#left-pane").splitter({
+			        orientation: "vertical",
+			        panes: [
+			            {collapsible: true, size: "300px" },
+			            {}
+			        ]
+			    });
+			
+			
+			
+			    var options = {
+			        data: {
+			            simpleData: {
+			                enable: true
+			            }
+			        },
+			        fNodes : [
+			            { id:1, pId:0, name:"父节点1 - 展开", open:true},
+			            { id:11, pId:1, name:"父节点11 - 折叠"},
+			            { id:111, pId:11, name:"叶子节点111"},
+			            { id:112, pId:11, name:"叶子节点112"},
+			            { id:113, pId:11, name:"叶子节点113"},
+			            { id:114, pId:11, name:"叶子节点114"},
+			            { id:12, pId:1, name:"父节点12 - 折叠"},
+			            { id:121, pId:12, name:"叶子节点121"},
+			            { id:122, pId:12, name:"叶子节点122"},
+			            { id:123, pId:12, name:"叶子节点123"},
+			            { id:124, pId:12, name:"叶子节点124"},
+			            { id:13, pId:1, name:"父节点13 - 没有子节点", isParent:true},
+			            { id:2, pId:0, name:"父节点2 - 折叠"},
+			            { id:21, pId:2, name:"父节点21 - 展开", open:true},
+			            { id:211, pId:21, name:"叶子节点211"},
+			            { id:212, pId:21, name:"叶子节点212"},
+			            { id:213, pId:21, name:"叶子节点213"},
+			            { id:214, pId:21, name:"叶子节点214"},
+			            { id:22, pId:2, name:"父节点22 - 折叠"},
+			            { id:221, pId:22, name:"叶子节点221"},
+			            { id:222, pId:22, name:"叶子节点222"},
+			            { id:223, pId:22, name:"叶子节点223"},
+			            { id:224, pId:22, name:"叶子节点224"},
+			            { id:23, pId:2, name:"父节点23 - 折叠"},
+			            { id:231, pId:23, name:"叶子节点231"},
+			            { id:232, pId:23, name:"叶子节点232"},
+			            { id:233, pId:23, name:"叶子节点233"},
+			            { id:234, pId:23, name:"叶子节点234"},
+			            { id:3, pId:0, name:"父节点3 - 没有子节点", isParent:true}
+			        ]
+			    };
+			    var $tree = $("#treeDemo").tree(options);
+			
+			
+			
+			
+			    var opt = {
+			        data: [
+			            {id:"1",invdate:"2010-05-24",name:"测试很长很长很长很长很长很长很长很长很长很长很长很长很长很长的文字",note:"note",tax:"10.00",total:"2111.00"} ,
+			            {id:"2",invdate:"2010-05-25",name:"test2",note:"note2",tax:"20.00",total:"320.00",extra:"tyl"},
+			            {id:"3",invdate:"2007-09-01",name:"test3",note:"note3",tax:"30.00",total:"430.00"},
+			            {id:"4",invdate:"2007-10-04",name:"test",note:"note",tax:"10.00",total:"210.00"},
+			            {id:"29",invdate:"2007-09-01",name:"test3",note:"note3",amount:"400.00",tax:"30.00",total:"430.00"}
+			        ],
+			        colModel: [
+			            {name: 'id',index: 'id',sorttype: "int",label: 'Inv No'},
+			            {name: 'invdate',label: 'Date',index: 'invdate',width: 90,sorttype: "date",formatter: "date"},
+			            {name: 'name',label: 'Client',index: 'name',width: 100},
+			            {name: 'amount',label: 'Amount',index: 'amount',width: 80,align: "right",sorttype: "float",formatter: "number"},
+			            {name: 'tax',label: 'Tax',index: 'tax',width: 80,align: "right",sorttype: "float"},
+			            {name: 'total',label: 'Total',index: 'total',width: 80,align: "right",sorttype: "float"},
+			            {name: 'note',label: 'Notes',index: 'note',width: 100,sortable: false}
+			        ]
+			    };
+			    $("#gridId").grid(opt);
+			});
+			
+		</script>-->
+		<script type="text/javascript">
+			$(document).ready(function () {
+		          var data = [
+		              {
+		                "date":"Apr 2015",
+		                "children":[
+		                  {
+		                    "title":"Surprising Headline Right Here",
+		                    "time":"8/4/2015",
+		                    "content":[{"text":"Lorem Ipsum and such.","id":1}]
+		                  },
+		                  {
+		                    "title":"Breaking into Spring!",
+		                    "time":"10/4/2015",
+		                    "content":"Hope the weather gets a bit nicer"
+		                  }
+		                ]
+		              },
+		              {
+		                "date":"Mar 2015",
+		                "children":[
+		                  {
+		                    "title":"New Apple Device Release Date",
+		                    "time":"2/5/2015",
+		                    "content":"In memory of Steve Jobs."
+		                  },
+		                  {
+		                    "title":"Some Important Date!",
+		                    "time":"19/5/2015",
+		                    "content":"Write up a quick summary of the event."
+		                  }
+		                ]
+		              }
+		        ];
+		        $('#timeline').timeline({
+		           params:data,
+		           orientation:'vertical', //horizontal
+		           circClickfn:function(target,data){
+		              console.log(target)
+		              console.log(data)
+		              console.log(arguments)
+		           },
+		           customClass: {   //定制样式
+		              date   : "tldate",
+		              time   : "tl-time", 
+		              circ   : "tl-circ", 
+		              panel  : "timeline-panel", 
+		              header : "tl-heading", 
+		              body   : "tl-body", 
+		           },
+		           customBody: "<p>{{text}}---{{id}}</p>",//定制content内容
+		        }
+		        );
+		        $('#destroy').click(function(e) {
+		            $('#timeline').timeline('destroy');
+		        });
+		        $('#build').click(function(e) {
+		            $('#timeline').timeline({params:data,
+		           orientation:'horizontal'});
+		        });
+		      }); //end dom ready
+		</script>
+		<script type="text/css">
+			#vertical {
+                    height: 380px;
+                    width: 100%;
+                    margin: 0 auto;
+                }
+
+            #middle-pane { background-color: rgba(60, 70, 80, 0.10); }
+            #left-pane, #center-pane, #right-pane  { background-color: rgba(60, 70, 80, 0.05); }
+
+            .pane-content {
+                padding: 0 10px;
+            }
+		</script>
+		<title>demo</title>
+	</head>
+	<!--
+		头部导航
+		左侧导航
+		中间内容
+	-->
+	<body style="background-color: #EEF1F5;">
+		
+		<!--头部导航：固定顶部-->
+		<nav class="navbar navbar-default navbar-fixed-top" style="background-color: #00B7EE;">
+		    <div class="container-fluid">
+		        <div class="navbar-header">
+		            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		                <span class="sr-only">Toggle navigation</span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		            <a class="navbar-brand" href="#">Brand</a>
+		        </div>
+		        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		            <ul class="nav navbar-nav">
+		                <!--<li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>-->
+		                <li><a href="#">Link</a></li>
+		                <li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+		                    <ul class="dropdown-menu">
+		                        <li><a href="#">Action</a></li>
+		                        <li><a href="#">Another action</a></li>
+		                        <li><a href="#">Something else here</a></li>
+		                        <li role="separator" class="divider"></li>
+		                        <li><a href="#">Separated link</a></li>
+		                        <li role="separator" class="divider"></li>
+		                        <li><a href="#">One more separated link</a></li>
+		                    </ul>
+		                </li>
+		            </ul>
+		            <ul class="nav navbar-nav navbar-right">
+		                <li><a href="#">Link</a></li>
+		                <li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+		                    <ul class="dropdown-menu">
+		                        <li><a href="#">Action</a></li>
+		                        <li><a href="#">Another action</a></li>
+		                        <li><a href="#">Something else here</a></li>
+		                        <li role="separator" class="divider"></li>
+		                        <li><a href="#">Separated link</a></li>
+		                    </ul>
+		                </li>
+		            </ul>
+		        </div>
+		    </div>
+		</nav>
+		
+		<!---->
+		<div class="container-fluid" style="background-color: #FFFFFF; margin-top: 50px;">
+			<div class="row" >
+				
+				
+				<!--左侧导航-->
+				<div id="left-nav" class="col-md-1" style="background-color: #EEF4F9; flex-flow: column;">
+					<nav class="navbar navbar-left" id="sidebar-wrapper" role="navigation">
+					  <ul class="nav sidebar-nav">
+					    <li class="sidebar-brand"> <a href="#"> Bootstrap 3 </a> </li>
+					    <li> <a href="#"> <i class="fa fa-fw fa-home"> </i> Home </a> </li>
+					    <li> <a href="#"> <i class="fa fa-fw fa-folder"> </i> Page one </a> </li>
+					    <li> <a href="#"> <i class="fa fa-fw fa-file-o"> </i> Second page </a> </li>
+					    <li> <a href="#"> <i class="fa fa-fw fa-cog"> </i> Third page </a> </li>
+					    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-fw fa-plus"> </i> Dropdown <span class="caret"> </span> </a>
+					      <ul class="dropdown-menu" role="menu">
+					        <li class="dropdown-header"> Dropdown heading </li>
+					        <li> <a href="#"> Action </a> </li>
+					        <li> <a href="#"> Another action </a> </li>
+					        <li> <a href="#"> Something else here </a> </li>
+					        <li> <a href="#"> Separated link </a> </li>
+					        <li> <a href="#"> One more separated link </a> </li>
+					      </ul>
+					    </li>
+					    <li> <a href="#"> <i class="fa fa-fw fa-bank"> </i> Page four </a> </li>
+					    <li> <a href="#"> <i class="fa fa-fw fa-dropbox"> </i> Page 5 </a> </li>
+					    <li> <a href="#"> <i class="fa fa-fw fa-twitter"> </i> Last page </a> </li>
+					  </ul>
+					</nav>
+				</div>
+				
+				<!--正文-->
+				
+				<div id="right-content" class="col-md-11">
+					<!--面包屑导航/路径导航-->
+					<div class="col-md-12">
+						<ol class="breadcrumb">
+						    <li><a href="#">Home</a></li>
+						    <li><a href="#">Library</a></li>
+						    <li class="active">Data</li>
+						</ol>
+					</div>
+					<!--内容-->
+					<div class="container">
+						<div class="row">
+							<!--splitter-->
+							<div class="col-md-12">
+								<ul class="list-group">
+								    <li class="list-group-item list-group-item-success">Dapibus ac facilisis in</li>
+								    <li class="list-group-item list-group-item-info">Cras sit amet nibh libero</li>
+								    <li class="list-group-item list-group-item-warning">Porta ac consectetur ac</li>
+								    <li class="list-group-item list-group-item-danger">Vestibulum at eros</li>
+								</ul>
+								<div class="list-group">
+								    <a href="#" class="list-group-item list-group-item-success">Dapibus ac facilisis in</a>
+								    <a href="#" class="list-group-item list-group-item-info">Cras sit amet nibh libero</a>
+								    <a href="#" class="list-group-item list-group-item-warning">Porta ac consectetur ac</a>
+								    <a href="#" class="list-group-item list-group-item-danger">Vestibulum at eros</a>
+								</div>
+						    
+							</div>
+							<div class="col-md-12">
+								<table class="table table-hover table-striped">
+								    <!--<caption>基本的表格布局</caption>-->
+								    <thead>
+									    <tr>
+									      <th>集团名称</th>
+									      <th>集团编码</th>
+									    </tr>
+								    </thead>
+								    <tbody>
+									    <tr>
+									      <td>中国工商银行</td>
+									      <td>A0001</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>中国工商银行</td>
+									      <td>A0001</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>中国工商银行</td>
+									      <td>A0001</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>中国工商银行</td>
+									      <td>A0001</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+									    <tr>
+									      <td>-</td>
+									      <td>-</td>
+									    </tr>
+								    </tbody>
+								</table>
+							</div>
+							<!--时间轴-->
+							<div class="col-md-12">
+								<div id="timeline-html" class="row">
+								    <div class="form-group">
+								        <div class="input-group col-md-12">
+								            <div id="timeline" data-ui-role="timeline"><ul class="timeline"><li><div class="tldate">Apr 2015</div></li><li class="timeline"><div class="tl-time">8/4/2015</div><div class="tl-circ" data-date="Apr 2015"></div><div class="timeline-panel"><div class="tl-heading"><h4>Surprising Headline Right Here</h4></div><div class="tl-body"><p>Lorem Ipsum and such.---1</p></div></div></li><li class="timeline"><div class="tl-time">10/4/2015</div><div class="tl-circ" data-date="Apr 2015"></div><div class="timeline-panel"><div class="tl-heading"><h4>Breaking into Spring!</h4></div><div class="tl-body"><p>Hope the weather gets a bit nicer</p></div></div></li><li><div class="tldate">Mar 2015</div></li><li class="timeline"><div class="tl-time">2/5/2015</div><div class="tl-circ" data-date="Mar 2015"></div><div class="timeline-panel"><div class="tl-heading"><h4>New Apple Device Release Date</h4></div><div class="tl-body"><p>In memory of Steve Jobs.</p></div></div></li><li class="timeline"><div class="tl-time">19/5/2015</div><div class="tl-circ" data-date="Mar 2015"></div><div class="timeline-panel"><div class="tl-heading"><h4>Some Important Date!</h4></div><div class="tl-body"><p>Write up a quick summary of the event.</p></div></div></li></ul></div>
+								        </div>
+								        <button class="btn btn-default" type="button" id="destroy">销毁</button>
+								        <button class="btn btn-default" type="button" id="build">创建</button>
+								    </div>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+					
+					
+				</div>
+			</div>
+			
+		</div>
+	</body>
+</html>

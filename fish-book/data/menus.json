@@ -1,0 +1,151 @@
+[
+  {
+    "title": "一级菜单",
+    "hash": "#modules/user/a",
+    "url":"modules/user/a.html",
+    "icon": "glyphicon glyphicon-asterisk"
+  },
+  {
+    "title": "一级菜单2",
+    "hash": "javascript:;",
+    "icon": "glyphicon glyphicon-asterisk",
+    "children": [
+      {
+        "title": "二级菜单1",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#bb1",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单2",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#bb2",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单3",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#bb3",
+        "url": "modules/user/a.html"
+      }
+    ]
+  },
+  {
+    "title": "一级菜单3",
+    "hash": "javascript:;",
+    "icon": "glyphicon glyphicon-shopping-cart",
+    "children": [
+      {
+        "title": "二级菜单1",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#cc1",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单2",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#cc2",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单3",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#cc3",
+        "url": "modules/user/a.html"
+      }
+    ]
+  },
+  {
+    "title": "一级菜单4",
+    "hash": "javascript:;",
+    "icon": "glyphicon glyphicon-shopping-cart",
+    "children": [
+      {
+        "title": "二级菜单1",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#dd1",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单2",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#dd2",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单3",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#dd3",
+        "url": "modules/user/a.html"
+      }
+    ]
+  },
+  {
+    "title": "无子菜单",
+    "hash": "#nosubmenu1",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart"
+  },
+  {
+    "title": "无子菜单1",
+    "hash": "#nosubmenu2",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart"
+  },
+  {
+    "title": "无子菜单2",
+    "hash": "#nosubmenu3",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart"
+  },
+  {
+    "title": "无子菜单3",
+    "hash": "#nosubmenu4",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart"
+  },
+  {
+    "title": "无子菜单4",
+    "hash": "#nosubmenu5",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart"
+  },
+  {
+    "title": "无子菜单5",
+    "hash": "#nosubmenu6",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart"
+  },
+  {
+    "title": "无子菜单6",
+    "hash": "#nosubmenu7",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart"
+  },
+  {
+    "title": "一级菜单5",
+    "hash": "javascript:;",
+    "url": "modules/user/a.html",
+    "icon": "glyphicon glyphicon-shopping-cart",
+    "children": [
+      {
+        "title": "二级菜单1",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#ee1",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单2",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#ee2",
+        "url": "modules/user/a.html"
+      },
+      {
+        "title": "二级菜单3",
+        "icon": "glyphicon glyphicon-shopping-cart",
+        "hash": "#ee3",
+        "url": "modules/user/a.html"
+      }
+    ]
+  }
+]
